@@ -1,0 +1,6 @@
+div.Board {
+  width: 498px;
+  margin: 30px auto;
+  padding: 0;
+  display: flex;
+}
