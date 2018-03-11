@@ -1,6 +1,8 @@
 div.Board {
-  width: 498px;
+  width: 495px;
   margin: 30px auto;
   padding: 0;
   display: flex;
+  justify-content: center;
+  border: 4px solid #eee;
 }

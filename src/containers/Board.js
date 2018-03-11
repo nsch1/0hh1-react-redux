@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Square from '../components/Square'
+import { duplicateRows, duplicateCols } from '../lib/game'
 import './Board.css'
 
 export class Board extends PureComponent {
@@ -20,8 +21,12 @@ export class Board extends PureComponent {
   }
 
   renderSquare = rowIndex => (value, index) => {
+    const { dupeRows, dupeCols } = this.props
+
+    const dupe = dupeRows.includes(rowIndex) || dupeCols.includes(index)
+
     return (
-      <Square key={index} value={value} />
+      <Square key={index} value={value} dupe={dupe} x={index} y={rowIndex} />
     )
   }
 
@@ -34,6 +39,12 @@ export class Board extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ board }) => ({ board })
+const mapStateToProps = ({ board }) => {
+  return {
+    board,
+    dupeRows: duplicateRows(board),
+    dupeCols: duplicateCols(board)
+  }
+}
 
 export default connect(mapStateToProps)(Board)
